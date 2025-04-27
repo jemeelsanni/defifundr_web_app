@@ -12,3 +12,7 @@ export interface AccountOption {
   description: string;
   // icon: string;
 }
+export interface AuthFormHeaderProps {
+  title: string;
+  description: string;
+}
