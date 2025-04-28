@@ -100,7 +100,7 @@ const OTPInput: React.FC<OTPInputProps> = ({
   return (
     <div className="space-y-6">
       {/* OTP input fields */}
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-1.5">
         {otp.map((digit, index) => (
           <input
             key={index}
