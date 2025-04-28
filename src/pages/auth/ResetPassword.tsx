@@ -4,10 +4,10 @@ import { EyeOff, EyeOn } from "../../assets/svg/svg";
 
 export const ResetPassword = () => {
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
-  const [isComfirePasswordVisible, setIsComfirePasswordVisible] =
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
-  const toggleComfirePasswordVisiblity = () => {
-    setIsComfirePasswordVisible((prev) => !prev);
+  const toggleConfirmPasswordVisibility = () => {
+    setIsConfirmPasswordVisible((prev) => !prev);
   };
   const toggleNewPasswordVisibility = () => {
     setIsNewPasswordVisible((prev) => !prev);
@@ -43,12 +43,12 @@ export const ResetPassword = () => {
               </div>
             </div>{" "}
             <div className="form-control ">
-              <label htmlFor="comfirmPassword">Confirm password</label>
+              <label htmlFor="confirmPassword">Confirm password</label>
               <div className="relative">
                 <input
-                  type={isComfirePasswordVisible ? "text" : "password"}
-                  name="comfirmPassword"
-                  id="comfirmPassword"
+                  type={isConfirmPasswordVisible ? "text" : "password"}
+                  name="confirmPassword"
+                  id="confirmPassword"
                   placeholder="Confirm password"
                 />
                 <div>
@@ -56,9 +56,9 @@ export const ResetPassword = () => {
                     type="button"
                     className="absolute transform -translate-y-1/2 right-4.5 top-1/2 focus:outline-none cursor-pointer"
                     aria-label="Toggle password visibility"
-                    onClick={toggleComfirePasswordVisiblity}
+                    onClick={toggleConfirmPasswordVisibility}
                   >
-                    {isComfirePasswordVisible ? <EyeOn /> : <EyeOff />}
+                    {isConfirmPasswordVisible ? <EyeOn /> : <EyeOff />}
                   </button>
                 </div>
               </div>
@@ -69,7 +69,6 @@ export const ResetPassword = () => {
               type="submit"
               className="!w-full h-14 button button--secondary"
             >
-              {" "}
               Continue
             </button>
           </div>

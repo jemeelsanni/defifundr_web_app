@@ -4,9 +4,10 @@ import AuthLayout from "../layout/auth";
 import SignIn from "../pages/auth/signin";
 import Guide from "../pages/guide";
 import GuestLayout from "../layout/guest";
-import { ForgetPassword } from "../pages/auth/ForgetPassword";
+
 import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
 import { ResetPassword } from "../pages/auth/ResetPassword";
+import { ForgotPassword } from "../pages/auth/forgotPassword";
 
 export const router = createBrowserRouter([
   {
@@ -23,15 +24,15 @@ export const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: "forget-password",
-        element: <ForgetPassword />,
+        path: "forgot-password",
+        element: <ForgotPassword />,
       },
       {
         path: "otp",
         element: <ResetPasswordOtp />,
       },
       {
-        path: "Reset-password",
+        path: "reset-password",
         element: <ResetPassword />,
       },
     ],

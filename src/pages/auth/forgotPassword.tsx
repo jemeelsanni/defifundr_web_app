@@ -1,6 +1,6 @@
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 
-export const ForgetPassword = () => {
+export const ForgotPassword = () => {
   return (
     <div className="flex flex-col gap-14">
       <AuthFormHeader

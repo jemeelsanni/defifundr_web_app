@@ -1,5 +1,5 @@
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
-import ResetpasswordOtpInput from "../../components/auth/ResetpasswordOtpInput";
+import ResetPasswordOtpInput from "../../components/auth/ResetpasswordOtpInput";
 
 export const ResetPasswordOtp = () => {
   return (
@@ -14,7 +14,7 @@ export const ResetPasswordOtp = () => {
           <div>
             <div className="form-control ">
               <label htmlFor="email"></label>
-              <ResetpasswordOtpInput />
+              <ResetPasswordOtpInput />
             </div>
           </div>
           <div className="">

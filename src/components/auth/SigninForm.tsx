@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ConnectWallet } from "./ConnectWallet";
-import { EyeOff } from "lucide-react";
-import { EyeOn } from "../../assets/svg/svg";
+
+import { EyeOff, EyeOn } from "../../assets/svg/svg";
 
 export const SigninForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

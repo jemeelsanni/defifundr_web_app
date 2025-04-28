@@ -49,7 +49,7 @@ When a specific size isn't available in Tailwind:
 
 1. Use the closest predefined class
 2. Combine multiple classes if needed
-3. Consult the design team for standardization
+3. Consult the team for standardization
 
 #### Common Conversions
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { PinIcon } from "../../assets/svg/svg";
 
-function ResetpasswordOtpInput() {
+function ResetPasswordOtpInput() {
   const otpLength = 6;
   const [otp, setOtp] = useState(Array(otpLength).fill(""));
   const [countdown, setCountdown] = useState(300);
@@ -119,4 +119,4 @@ function ResetpasswordOtpInput() {
   );
 }
 
-export default ResetpasswordOtpInput;
+export default ResetPasswordOtpInput;
