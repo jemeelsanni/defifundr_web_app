@@ -18,6 +18,7 @@ export default function AuthLayout() {
         <div className="p-6">
           <div className="flex items-center justify-center w-12 h-12 bg-black rounded-lg dark:bg-primary-200 drop-shadow-md lg:hidden md:hidden">
             <div className="text-white">
+
               <LogoCollapsed />
             </div>
           </div>

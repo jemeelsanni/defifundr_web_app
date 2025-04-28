@@ -9,7 +9,7 @@ const SignIn = () => {
         title="Welcome back!"
         description="Securely access your account and manage payroll with ease"
       />
-      <SigninForm />{" "}
+      <SigninForm />
     </div>
   );
 };
