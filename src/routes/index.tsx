@@ -8,6 +8,7 @@ import GuestLayout from "../layout/guest";
 import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
 import { ResetPassword } from "../pages/auth/ResetPassword";
 import { ForgotPassword } from "../pages/auth/forgotPassword";
+import CreateAccount from "../pages/auth/createAccount";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "reset-password",
         element: <ResetPassword />,
+      },
+      {
+        path: RoutePaths.CREATE_ACCOUNT,
+        element: <CreateAccount />,
       },
     ],
   },
