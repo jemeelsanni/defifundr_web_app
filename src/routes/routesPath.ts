@@ -9,6 +9,7 @@ export const RoutePaths = {
   SIGNIN: "/signin",
   RESET_PASSWORD: "/reset-password",
   FORGOT_PASSWORD: "/forgot-password",
+  CREATE_PASSWORD: "/create-password",
   RESET_OTP: "/reset-otp",
   GUIDE: "/guide",
 };
