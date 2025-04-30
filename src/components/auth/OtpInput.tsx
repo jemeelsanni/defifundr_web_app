@@ -4,6 +4,7 @@ import { PinIcon } from "../../assets/svg/svg";
 function ResetPasswordOtpInput() {
   const otpLength = 6;
   const [otp, setOtp] = useState(Array(otpLength).fill(""));
+  const [mask, setMask] = useState(Array(otpLength).fill(false));
   const [countdown, setCountdown] = useState(300);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -27,6 +28,15 @@ function ResetPasswordOtpInput() {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
+      setTimeout(() => {
+        if (value !== "") {
+          setMask((prev) => {
+            const newMask = [...prev];
+            newMask[index] = true;
+            return newMask;
+          });
+        }
+      }, 1000);
 
       // Auto-focus next input if current input is filled
       if (value !== "" && index < otp.length - 1) {
@@ -45,8 +55,18 @@ function ResetPasswordOtpInput() {
     index: number,
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
+    setMask((prev) => {
+      const newMask = [...prev];
+      newMask[index] = false;
+      return newMask;
+    });
     // Go to previous input on backspace if current input is empty
     if (e.key === "Backspace" && index > 0 && otp[index] === "") {
+      setMask((prev) => {
+        const newMask = [...prev];
+        newMask[index] = false;
+        return newMask;
+      });
       inputRefs.current[index - 1]?.focus();
     }
   };
@@ -69,12 +89,12 @@ function ResetPasswordOtpInput() {
   };
 
   return (
-    <div className="space-y-2">
-      <label htmlFor="otp-0" aria-label="OTP label">
+    <div className="space-y-2 ">
+      <label className="text-gray-150" htmlFor="otp-0" aria-label="OTP label">
         OTP Verification
       </label>
 
-      <div className="flex gap-2">
+      <div className="flex justify-between">
         {otp.map((digit, index) => (
           <div key={index} className="relative">
             <input
@@ -88,17 +108,17 @@ function ResetPasswordOtpInput() {
               name={`otp-${index}`}
               id={`otp-${index}`}
               aria-label={`OTP digit ${index + 1}`}
-              onChange={(e) => handleChange(index, e.target.value, e)}
+              onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
               onPaste={handlePaste}
-              className={`otp-input  peer  ${
-                digit ? "filled" : ""
+              className={`otp-input  peer !border-none dark:!bg-gray-500  ${
+                mask[index] == true ? "filled text-transparent  " : ""
               } !placeholder:font-bold !placeholder:text-5xl`}
             />
             <div
               aria-hidden="true"
               className={` ${
-                digit != "" ? "hidden" : "block"
+                mask[index] == true ? "block" : "hidden"
               } absolute  top-1/2 left-1/2 -translate-1/2 `}
             >
               <PinIcon />
@@ -109,10 +129,16 @@ function ResetPasswordOtpInput() {
 
       <div className="flex items-end justify-center pt-4">
         <button
+          type="button"
           disabled={isResendDisabled}
-          className="text-sm font-bold transition duration-300 ease-in-out cursor-pointer text-primary-200 dark:text-primary-400 dark:hover:text-primary-400/70 hover:text-primary-200/70"
+          className="text-sm font-bold transition duration-300 ease-in-out cursor-pointer text-primary-200 dark:text-primary-400 dark:hover:text-primary-400/70 hover:text-primary-200/70 disabled:text-gray-200 dark:disabled:text-gray-300"
         >
-          Resend code
+          Resend code{" "}
+          {countdown > 0 && (
+            <span className="text-primary-200 dark:text-primary-400">
+              {Math.floor(countdown / 60)}:{countdown % 60}
+            </span>
+          )}
         </button>
       </div>
     </div>
