@@ -1,7 +1,73 @@
 import { ThemeToggle } from "../common/ThemeToggler";
+
 import OTPInput from "../components/OtpInput";
+import useModal from "../hooks/useModal";
 
 const Guide = () => {
+  const handleOTPComplete = (code: string) => {
+    console.log("OTP completed:", code);
+    showSuccessModal(
+      "OTP Verified",
+      `Your OTP (${code}) has been verified successfully.`
+    );
+  };
+  const {
+    showInfoModal,
+    showSuccessModal,
+    showErrorModal,
+    showWarningModal,
+    showConfirmModal,
+    showCustomModal,
+  } = useModal();
+
+  const handleDelete = () => {
+    // Simulate delete action
+    console.log("Delete action confirmed");
+    // Show success message after delete
+    showSuccessModal("Deleted", "Item has been successfully deleted.");
+  };
+
+  const handleCustomModal = () => {
+    const CustomContent = (
+      <div className="flex flex-col items-center space-y-6 text-center">
+        {/* Close button at top right */}
+
+        {/* Emoji container with purple background */}
+        <div className="flex items-center justify-center w-20 h-20 p-4 rounded-full bg-primary-200">
+          <span className="text-4xl">🤔</span>
+        </div>
+
+        {/* Title */}
+        <h2 className="text-2xl font-bold">Custom?</h2>
+
+        {/* Bullet points list */}
+        <ul className="space-y-2 text-left">
+          <li className="flex items-start">
+            <span className="mr-2">•</span>
+            <span>
+              Check your spam or junk folder - Sometimes, emails get filtered.
+            </span>
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">•</span>
+            <span>Wait a few minutes - it may take a moment to arrive.</span>
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">•</span>
+            <span>Resend the email - Tap the button to send it again.</span>
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">•</span>
+            <span>
+              Check if your email is correct - Sometimes, we make mistakes.
+            </span>
+          </li>
+        </ul>
+      </div>
+    );
+
+    showCustomModal(CustomContent, "md");
+  };
   return (
     <div className="container py-8">
       <div className="flex items-center justify-between mb-8">
@@ -14,9 +80,7 @@ const Guide = () => {
         <h2 className="mb-6 h3">OTP Verification</h2>
         <div className="max-w-md mx-auto">
           <div className="mb-6">
-            <OTPInput
-              onComplete={(code) => console.log("OTP completed:", code)}
-            />
+            <OTPInput onComplete={handleOTPComplete} />
           </div>
         </div>
       </div>
@@ -177,6 +241,74 @@ const Guide = () => {
           <button className="button button--secondary">Secondary Button</button>
           <button className="button button--primary" disabled>
             Disabled Button
+          </button>
+        </div>
+      </div>
+      <div className="container py-8">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="h2">Modal Examples</h1>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <button
+            className="button button--primary"
+            onClick={() =>
+              showInfoModal("Information", "This is an informational message.")
+            }
+          >
+            Show Info Modal
+          </button>
+
+          <button
+            className="button button--primary"
+            onClick={() =>
+              showSuccessModal("Success", "Operation completed successfully!")
+            }
+          >
+            Show Success Modal
+          </button>
+
+          <button
+            className="button button--primary"
+            onClick={() =>
+              showErrorModal(
+                "Error",
+                "An error occurred while processing your request."
+              )
+            }
+          >
+            Show Error Modal
+          </button>
+
+          <button
+            className="button button--primary"
+            onClick={() =>
+              showWarningModal("Warning", "This action cannot be undone.")
+            }
+          >
+            Show Warning Modal
+          </button>
+
+          <button
+            className="button button--primary"
+            onClick={() =>
+              showConfirmModal(
+                "Confirm Delete",
+                "Are you sure you want to delete this item?",
+                handleDelete,
+                "Delete",
+                "Cancel"
+              )
+            }
+          >
+            Show Confirm Modal
+          </button>
+
+          <button
+            className="button button--primary"
+            onClick={handleCustomModal}
+          >
+            Show Custom Modal
           </button>
         </div>
       </div>
