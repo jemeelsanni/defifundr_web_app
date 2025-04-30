@@ -69,12 +69,12 @@ function ResetPasswordOtpInput() {
   };
 
   return (
-    <div className="space-y-2">
-      <label htmlFor="otp-0" aria-label="OTP label">
+    <div className="space-y-2 ">
+      <label className="text-gray-150" htmlFor="otp-0" aria-label="OTP label">
         OTP Verification
       </label>
 
-      <div className="flex gap-2">
+      <div className="flex justify-between">
         {otp.map((digit, index) => (
           <div key={index} className="relative">
             <input
@@ -88,17 +88,17 @@ function ResetPasswordOtpInput() {
               name={`otp-${index}`}
               id={`otp-${index}`}
               aria-label={`OTP digit ${index + 1}`}
-              onChange={(e) => handleChange(index, e.target.value, e)}
+              onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
               onPaste={handlePaste}
-              className={`otp-input  peer  ${
-                digit ? "filled" : ""
+              className={`otp-input  peer !border-none dark:!bg-gray-500  ${
+                digit ? "filled text-transparent  " : ""
               } !placeholder:font-bold !placeholder:text-5xl`}
             />
             <div
               aria-hidden="true"
               className={` ${
-                digit != "" ? "hidden" : "block"
+                digit == "" ? "hidden" : "block"
               } absolute  top-1/2 left-1/2 -translate-1/2 `}
             >
               <PinIcon />
@@ -109,10 +109,16 @@ function ResetPasswordOtpInput() {
 
       <div className="flex items-end justify-center pt-4">
         <button
+          type="button"
           disabled={isResendDisabled}
-          className="text-sm font-bold transition duration-300 ease-in-out cursor-pointer text-primary-200 dark:text-primary-400 dark:hover:text-primary-400/70 hover:text-primary-200/70"
+          className="text-sm font-bold transition duration-300 ease-in-out cursor-pointer text-primary-200 dark:text-primary-400 dark:hover:text-primary-400/70 hover:text-primary-200/70 disabled:text-gray-200 dark:disabled:text-gray-300"
         >
-          Resend code
+          Resend code{" "}
+          {countdown > 0 && (
+            <span className="text-primary-200 dark:text-primary-400">
+              {Math.floor(countdown / 60)}:{countdown % 60}
+            </span>
+          )}
         </button>
       </div>
     </div>

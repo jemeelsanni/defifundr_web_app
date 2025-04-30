@@ -136,7 +136,7 @@ body {
   }
 
   .h2 {
-    @apply text-2xl font-black sm:text-3xl md:text-5xl leading-[100%];
+    @apply text-2xl font-bold sm:text-3xl md:text-5xl leading-[100%];
   }
   .h3 {
     @apply text-xl sm:text-3xl font-semibold tracking-[-2%];
@@ -201,7 +201,7 @@ body {
 
       /* Dark mode form input styles */
       .dark & {
-        @apply text-white border-gray-400 focus:border-primary-300;
+        @apply text-black border-gray-400 focus:border-primary-300;
       }
     }
 
