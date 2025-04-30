@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 import { EyeOff, EyeOn } from "../../assets/svg/svg";
-import { ThemeToggle } from "../../common/ThemeToggler";
 
 export const CreatePassword = () => {
     const [newPassword, setNewPassword] = useState("");
