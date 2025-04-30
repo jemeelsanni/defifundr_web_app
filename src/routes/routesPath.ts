@@ -2,7 +2,7 @@ export const RoutePaths = {
   ROOT: "/",
   ACCOUNT_TYPES: "/account-types",
 
-  VERIFY_EMAIL: "/verify-email",
+  VERIFY_EMAIL: "/auth/verify-email",
 
   // ACCOUNT_CREATION: "/create-account",
   CREATE_ACCOUNT: "/auth/create-account",

@@ -18,18 +18,17 @@ export default function AuthLayout() {
         <div className="p-6">
           <div className="flex items-center justify-center w-12 h-12 bg-black rounded-lg dark:bg-primary-200 drop-shadow-md lg:hidden md:hidden">
             <div className="text-white">
-
               <LogoCollapsed />
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-center flex-1 p-8 md:p-12">
+        <div className="flex items-center justify-center flex-1 p-8 md:p-12 ">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-md"
+            className="w-fit"
           >
             <Outlet />
           </motion.div>
