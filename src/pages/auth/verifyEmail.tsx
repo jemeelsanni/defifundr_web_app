@@ -1,5 +1,5 @@
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
-import ResetPasswordOtpInput from "../../components/auth/ResetpasswordOtpInput";
+import ResetPasswordOtpInput from "../../components/auth/ResetPasswordOtpInput";
 
 export const VerifyEmail = () => {
   return (
