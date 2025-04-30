@@ -6,10 +6,12 @@ import Guide from "../pages/guide";
 import GuestLayout from "../layout/guest";
 
 import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
-import { ResetPassword } from "../pages/auth/ResetPassword";
+
 import { ForgotPassword } from "../pages/auth/forgotPassword";
-import { VerifyEmail } from "../pages/auth/VerifyEmail";
+
 import CreateAccount from "../pages/auth/createAccount";
+import { ResetPassword } from "../pages/auth/resetPassword";
+import { VerifyEmail } from "../pages/auth/verifyEmail";
 
 export const router = createBrowserRouter([
   {
@@ -26,19 +28,19 @@ export const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: "forgot-password",
+        path: RoutePaths.FORGOT_PASSWORD,
         element: <ForgotPassword />,
       },
       {
-        path: "otp",
+        path: RoutePaths.RESET_OTP,
         element: <ResetPasswordOtp />,
       },
       {
-        path: "reset-password",
+        path: RoutePaths.RESET_PASSWORD,
         element: <ResetPassword />,
       },
       {
-        path: "verify-email",
+        path: RoutePaths.VERIFY_EMAIL,
         element: <VerifyEmail />,
       },
       {
