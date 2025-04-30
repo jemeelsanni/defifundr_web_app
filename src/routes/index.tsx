@@ -4,14 +4,11 @@ import AuthLayout from "../layout/auth";
 import SignIn from "../pages/auth/signin";
 import Guide from "../pages/guide";
 import GuestLayout from "../layout/guest";
-
 import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
-
 import { ForgotPassword } from "../pages/auth/forgotPassword";
-
 import CreateAccount from "../pages/auth/createAccount";
 import { CreatePassword } from "../pages/auth/createPassword";
-import { ResetPassword } from "../pages/auth/resetPassword";
+import { ResetPassword } from "../pages/auth/ResetPassword";
 import { VerifyEmail } from "../pages/auth/verifyEmail";
 
 export const router = createBrowserRouter([
@@ -29,7 +26,7 @@ export const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: RoutePaths.FORGOT_PASSWORD,
+        path: "account-types",
         element: <ForgotPassword />,
       },
       {
@@ -37,16 +34,12 @@ export const router = createBrowserRouter([
         element: <CreatePassword />,
       },
       {
-        path: RoutePaths.RESET_OTP,
+        path: "reset-otp",
         element: <ResetPasswordOtp />,
       },
       {
-        path: RoutePaths.RESET_PASSWORD,
+        path: "reset-password",
         element: <ResetPassword />,
-      },
-      {
-        path: RoutePaths.VERIFY_EMAIL,
-        element: <VerifyEmail />,
       },
       {
         path: "verify-email",
