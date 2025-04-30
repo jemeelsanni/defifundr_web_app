@@ -1,5 +1,5 @@
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
-import ResetPasswordOtpInput from "../../components/auth/ResetPasswordOtpInput";
+import OtpInput from "../../components/auth/OtpInput";
 
 export const VerifyEmail = () => {
   return (
@@ -10,7 +10,7 @@ export const VerifyEmail = () => {
             your email account za**ab@gmail.com"
       />
       <div className="font-normal">
-        <ResetPasswordOtpInput />
+        <OtpInput />
       </div>
       <div>
         <div className="">
