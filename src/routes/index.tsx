@@ -8,7 +8,7 @@ import GuestLayout from "../layout/guest";
 import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
 import { ResetPassword } from "../pages/auth/ResetPassword";
 import { ForgotPassword } from "../pages/auth/forgotPassword";
-import { VerifyEmail } from "../pages/auth/verifyEmail";
+import { VerifyEmail } from "../pages/auth/VerifyEmail";
 
 export const router = createBrowserRouter([
   {

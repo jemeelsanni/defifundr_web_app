@@ -4,6 +4,7 @@ import { PinIcon } from "../../assets/svg/svg";
 function ResetPasswordOtpInput() {
   const otpLength = 6;
   const [otp, setOtp] = useState(Array(otpLength).fill(""));
+  const [mask, setMask] = useState(Array(otpLength).fill(false));
   const [countdown, setCountdown] = useState(300);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -27,6 +28,15 @@ function ResetPasswordOtpInput() {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
+      setTimeout(() => {
+        if (value !== "") {
+          setMask((prev) => {
+            const newMask = [...prev];
+            newMask[index] = true;
+            return newMask;
+          });
+        }
+      }, 1000);
 
       // Auto-focus next input if current input is filled
       if (value !== "" && index < otp.length - 1) {
@@ -45,8 +55,18 @@ function ResetPasswordOtpInput() {
     index: number,
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
+    setMask((prev) => {
+      const newMask = [...prev];
+      newMask[index] = false;
+      return newMask;
+    });
     // Go to previous input on backspace if current input is empty
     if (e.key === "Backspace" && index > 0 && otp[index] === "") {
+      setMask((prev) => {
+        const newMask = [...prev];
+        newMask[index] = false;
+        return newMask;
+      });
       inputRefs.current[index - 1]?.focus();
     }
   };
@@ -92,13 +112,13 @@ function ResetPasswordOtpInput() {
               onKeyDown={(e) => handleKeyDown(index, e)}
               onPaste={handlePaste}
               className={`otp-input  peer !border-none dark:!bg-gray-500  ${
-                digit ? "filled text-transparent  " : ""
+                mask[index] == true ? "filled text-transparent  " : ""
               } !placeholder:font-bold !placeholder:text-5xl`}
             />
             <div
               aria-hidden="true"
               className={` ${
-                digit == "" ? "hidden" : "block"
+                mask[index] == true ? "block" : "hidden"
               } absolute  top-1/2 left-1/2 -translate-1/2 `}
             >
               <PinIcon />
