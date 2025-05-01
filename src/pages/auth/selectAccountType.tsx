@@ -52,8 +52,8 @@ const SelectAccountType = () => {
                 className={
                   " text-base text-center " +
                   (isActive
-                    ? "text-gray-600 font-bold"
-                    : "text-gray-400 font-medium")
+                    ? "text-gray-600 dark:text-gray-150 font-bold"
+                    : "text-gray-400 dark:text-gray-200 font-medium")
                 }
               >
                 {account.label}
