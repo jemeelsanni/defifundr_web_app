@@ -4,12 +4,13 @@ import AuthLayout from "../layout/auth";
 import SignIn from "../pages/auth/signin";
 import Guide from "../pages/guide";
 import GuestLayout from "../layout/guest";
-import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
+
 import { ForgotPassword } from "../pages/auth/forgotPassword";
 import CreateAccount from "../pages/auth/createAccount";
-import { CreatePassword } from "../pages/auth/createPassword";
 import { ResetPassword } from "../pages/auth/ResetPassword";
 import { VerifyEmail } from "../pages/auth/verifyEmail";
+import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
+import { CreatePassword } from "../pages/auth/CreatePassword";
 
 export const router = createBrowserRouter([
   {
