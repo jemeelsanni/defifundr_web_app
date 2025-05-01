@@ -23,31 +23,33 @@ export const router = createBrowserRouter([
     element: <AuthLayout />, // Separate layout for authentication pages
     children: [
       {
-        path: "signin",
+        path: RoutePaths.SIGNIN,
         element: <SignIn />,
       },
+
       {
-        path: "account-types",
+        path: RoutePaths.CREATE_PASSWORD,
+        element: <CreatePassword />,
+      },
+
+      {
+        path: RoutePaths.FORGOT_PASSWORD,
         element: <ForgotPassword />,
       },
       {
-        path: "create-password",
-        element: <CreatePassword />,
-      },
-      {
-        path: "reset-otp",
+        path: RoutePaths.RESET_OTP,
         element: <ResetPasswordOtp />,
       },
       {
-        path: "reset-password",
+        path: RoutePaths.RESET_PASSWORD,
         element: <ResetPassword />,
       },
       {
-        path: "verify-email",
+        path: RoutePaths.VERIFY_EMAIL,
         element: <VerifyEmail />,
       },
       {
-        path: "create-account",
+        path: RoutePaths.CREATE_ACCOUNT,
         element: <CreateAccount />,
       },
     ],

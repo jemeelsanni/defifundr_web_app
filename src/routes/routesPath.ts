@@ -7,10 +7,10 @@ export const RoutePaths = {
   // ACCOUNT_CREATION: "/create-account",
   CREATE_ACCOUNT: "/auth/create-account",
 
-  SIGNIN: "/signin",
-  RESET_PASSWORD: "/reset-password",
-  FORGOT_PASSWORD: "/forgot-password",
-  CREATE_PASSWORD: "/create-password",
-  RESET_OTP: "/reset-otp",
+  SIGNIN: "/auth/signin",
+  RESET_PASSWORD: "/auth/reset-password",
+  FORGOT_PASSWORD: "/auth/forgot-password",
+  RESET_OTP: "/auth/reset-otp",
+  CREATE_PASSWORD: "/auth/create-password",
   GUIDE: "/guide",
 };
