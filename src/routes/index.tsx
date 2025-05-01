@@ -10,8 +10,9 @@ import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
 import { ForgotPassword } from "../pages/auth/forgotPassword";
 
 import CreateAccount from "../pages/auth/createAccount";
-import { ResetPassword } from "../pages/auth/resetPassword";
+import { ResetPassword } from "../pages/auth/ResetPassword";
 import { VerifyEmail } from "../pages/auth/verifyEmail";
+import SelectAccountType from "../pages/auth/selectAccountType";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: RoutePaths.CREATE_ACCOUNT,
         element: <CreateAccount />,
+      },
+      {
+        path: RoutePaths.SELECT_ACCOUNT_TYPE,
+        element: <SelectAccountType />,
       },
     ],
   },
