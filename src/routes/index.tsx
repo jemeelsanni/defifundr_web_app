@@ -5,13 +5,12 @@ import SignIn from "../pages/auth/signin";
 import Guide from "../pages/guide";
 import GuestLayout from "../layout/guest";
 
-import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
-
 import { ForgotPassword } from "../pages/auth/forgotPassword";
-
 import CreateAccount from "../pages/auth/createAccount";
 import { ResetPassword } from "../pages/auth/ResetPassword";
 import { VerifyEmail } from "../pages/auth/verifyEmail";
+import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
+import { CreatePassword } from "../pages/auth/CreatePassword";
 import SelectAccountType from "../pages/auth/selectAccountType";
 
 export const router = createBrowserRouter([
@@ -25,9 +24,15 @@ export const router = createBrowserRouter([
     element: <AuthLayout />, // Separate layout for authentication pages
     children: [
       {
-        path: "signin",
+        path: RoutePaths.SIGNIN,
         element: <SignIn />,
       },
+
+      {
+        path: RoutePaths.CREATE_PASSWORD,
+        element: <CreatePassword />,
+      },
+
       {
         path: RoutePaths.FORGOT_PASSWORD,
         element: <ForgotPassword />,

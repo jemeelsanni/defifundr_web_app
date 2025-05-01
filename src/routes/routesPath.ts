@@ -11,6 +11,7 @@ export const RoutePaths = {
   RESET_PASSWORD: "/auth/reset-password",
   FORGOT_PASSWORD: "/auth/forgot-password",
   RESET_OTP: "/auth/reset-otp",
+  CREATE_PASSWORD: "/auth/create-password",
   SELECT_ACCOUNT_TYPE: "/auth/select-account-type",
   GUIDE: "/guide",
 };

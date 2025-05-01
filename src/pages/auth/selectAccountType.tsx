@@ -39,7 +39,7 @@ const SelectAccountType = () => {
             >
               <div
                 className={
-                  "mb-3  size-25 2xs:size-22 xs:size-25 lg:size-32 rounded-full overflow-hidden bg-gray-100 transition-all ease-linear " +
+                  "mb-3  size-25 2xs:size-22 xs:size-25 lg:size-32 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-500 transition-all ease-linear " +
                   (isActive
                     ? "border-2 border-primary-200"
                     : "opacity-30 cursor-pointer")
