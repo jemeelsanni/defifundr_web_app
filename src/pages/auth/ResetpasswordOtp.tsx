@@ -12,11 +12,9 @@ export const ResetPasswordOtp = () => {
         />
         <form className="space-y-12">
           <div>
-            <div className="form-control ">
-              <label htmlFor="email"></label>
-              <OtpInput />
-            </div>
+            <OtpInput />
           </div>
+
           <div className="">
             <button
               type="submit"

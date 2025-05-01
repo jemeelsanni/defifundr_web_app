@@ -181,7 +181,7 @@ body {
 
   /* Form Controls */
   label {
-    @apply block mb-1 text-xs 2xs:text-sm;
+    @apply block mb-2 text-xs;
   }
 
   input[type="number"].appearance-none::-webkit-inner-spin-button,
@@ -197,11 +197,11 @@ body {
   .form-control {
     input,
     textarea {
-      @apply font-semibold text-[15px] xs:px-3.5 bg-gray-100 rounded-lg border border-primary-500 focus:border-primary-200 outline-0 focus:ring-0;
+      @apply font-semibold text-[15px] xs:px-3.5 bg-gray-100  rounded-lg border border-primary-500 focus:border-primary-200 outline-0 focus:ring-0;
 
       /* Dark mode form input styles */
       .dark & {
-        @apply text-black border-gray-400 focus:border-primary-300;
+        @apply text-black bg-gray-500 border-gray-400 dark:text-white focus:border-primary-300;
       }
     }
 

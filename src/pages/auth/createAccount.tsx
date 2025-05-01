@@ -12,50 +12,32 @@ const CreateAccount = () => {
 
       <div className="space-y-6">
         <div className="form-control ">
-          <label
-            htmlFor="firstName"
-            className="text-gray-600 dark:text-gray-150 font-medium text-xs mb-2"
-          >
-            First Name
-          </label>
+          <label htmlFor="firstName">First Name</label>
           <input
             type="text"
             name="firstName"
             id="firstName"
             placeholder="Provide your first name"
-            className="!text-sm !text-gray-400 dark:!text-gray-200 dark:bg-gray-500 !border-0 focus:!border !font-medium placeholder:text-gray-200 dark:placeholder:text-gray-300 px-3.5"
             required
           />
         </div>
 
         <div className="form-control ">
-          <label
-            htmlFor="lastName"
-            className="text-gray-600 dark:text-gray-150 font-medium text-xs mb-2"
-          >
-            Last Name
-          </label>
+          <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
             name="lastName"
             id="lastName"
             placeholder="Provide your last name"
             required
-            className="!text-sm !text-gray-400 dark:!text-gray-200 dark:bg-gray-500 !border-0 focus:!border !font-medium placeholder:text-gray-200 dark:placeholder:text-gray-300 px-3.5"
           />
         </div>
 
         <div className="form-control ">
-          <label
-            htmlFor="email"
-            className="text-gray-600 dark:text-gray-150 font-medium text-xs mb-2"
-          >
-            Email address
-          </label>
+          <label htmlFor="email">Email address</label>
           <input
             type="email"
             name="email"
-            className="!text-sm !text-gray-400 dark:!text-gray-200 dark:bg-gray-500 !border-0 focus:!border !font-medium placeholder:text-gray-200 dark:placeholder:text-gray-300 px-3.5"
             id="email"
             placeholder="Provide your last name"
             required
@@ -68,10 +50,10 @@ const CreateAccount = () => {
           <input
             type="checkbox"
             id="policy"
-            className="size-5 peer rounded border-2 border-gray-150 checked:border-0 appearance-none checked:bg-primary-200"
+            className="border-2 rounded appearance-none size-5 peer border-gray-150 checked:border-0 checked:bg-primary-200"
           />
-          <div className="absolute pointer-events-none hidden peer-checked:flex inset-0 justify-center items-center">
-            <Check className="size-3 stroke-3 text-white dark:text-gray-600" />
+          <div className="absolute inset-0 items-center justify-center hidden pointer-events-none peer-checked:flex">
+            <Check className="text-white size-3 stroke-3 dark:text-gray-600" />
           </div>
         </div>
         <label
