@@ -63,7 +63,10 @@ const SelectAccountType = () => {
         })}
       </div>
 
-      <button className="button button--secondary h-14 !w-full">
+      <button
+        className="button button--secondary h-14 !w-full disabled:opacity-40"
+        disabled={isSelected === ""}
+      >
         Continue
       </button>
     </div>
