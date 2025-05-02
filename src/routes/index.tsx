@@ -11,6 +11,7 @@ import { ResetPassword } from "../pages/auth/ResetPassword";
 import { VerifyEmail } from "../pages/auth/verifyEmail";
 import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
 import { CreatePassword } from "../pages/auth/CreatePassword";
+import SelectAccountType from "../pages/auth/selectAccountType";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: RoutePaths.CREATE_ACCOUNT,
         element: <CreateAccount />,
+      },
+      {
+        path: RoutePaths.SELECT_ACCOUNT_TYPE,
+        element: <SelectAccountType />,
       },
     ],
   },
