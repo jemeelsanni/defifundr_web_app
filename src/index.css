@@ -239,7 +239,7 @@ body {
     /* Custom Select Styling */
     select,
     .select {
-      @apply w-full text-[15px] bg-transparent border rounded-lg h-11 2xs:h-13 border-gray-200 focus:border-gray-500 focus:outline-0 focus:ring-0 appearance-none pl-3.5 pr-10 cursor-pointer relative;
+      @apply w-full text-[15px] text-gray-300 border rounded-lg h-11 2xs:h-13 border-gray-200 focus:border-gray-500 focus:outline-0 focus:ring-0 appearance-none pl-3.5 pr-10 cursor-pointer relative bg-gray-100;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235A42DE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 8px center;
@@ -247,16 +247,16 @@ body {
 
       /* Dark mode select styles */
       .dark & {
-        @apply text-white border-gray-400 focus:border-primary-300;
+        @apply text-gray-300 border-gray-400 bg-gray-500 focus:border-primary-300;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23C2BAF3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       }
 
       /* Select hover state */
       &:hover {
-        @apply border-gray-400;
+        @apply border-gray-200;
 
         .dark & {
-          @apply border-primary-400;
+          @apply border-primary-200;
         }
       }
 
@@ -280,10 +280,10 @@ body {
 
       /* Custom select options styling */
       option {
-        @apply py-1 text-gray-600 bg-white;
+        @apply py-1 text-black bg-white text-sm;
 
         .dark & {
-          @apply text-white bg-gray-500;
+          @apply text-white bg-gray-300;
         }
       }
     }

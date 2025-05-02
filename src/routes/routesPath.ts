@@ -6,7 +6,7 @@ export const RoutePaths = {
 
   // ACCOUNT_CREATION: "/create-account",
   CREATE_ACCOUNT: "/auth/create-account",
-
+  CREATE_BUSINESS_DETAIL: "/auth/add-business-details",
   SIGNIN: "/auth/signin",
   RESET_PASSWORD: "/auth/reset-password",
   FORGOT_PASSWORD: "/auth/forgot-password",
