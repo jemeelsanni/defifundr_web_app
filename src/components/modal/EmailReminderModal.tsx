@@ -43,24 +43,21 @@ const EmailReminderModal: React.FC<EmailReminderModalProps> = ({ onClose }) => {
               leaveTo="opacity-0 scale-95"
             >
               <DialogPanel
-                className="w-full max-w-md flex-col flex rounded-[24px] bg-white dark:bg-gray-500 text-black dark:text-white relative px-6 py-[4.25rem] shadow-xl transform transition-all"
+                className="w-full max-w-md flex-col flex rounded-[24px] bg-white dark:bg-gray-500 text-black dark:text-white relative px-6 py-[4.25rem] shadow-xl transform transition-all duration-300 ease-out"
               >
                 {/* Close button */}
                 <button onClick={onClose} className="self-start absolute top-5 left-5">
                   <svg
                     width="24"
                     height="24"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 32 32"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="text-gray-500 dark:text-gray-200"
                   >
                     <path
-                      d="M18 6L6 18M6 6L18 18"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      d="M23.4532 6.66675L15.9998 14.1201L8.5465 6.66675L6.6665 8.54675L14.1198 16.0001L6.6665 23.4534L8.5465 25.3334L15.9998 17.8801L23.4532 25.3334L25.3332 23.4534L17.8798 16.0001L25.3332 8.54675L23.4532 6.66675Z"
+                      fill="currentColor"
                     />
                   </svg>
                 </button>
@@ -106,7 +103,7 @@ const EmailReminderModal: React.FC<EmailReminderModalProps> = ({ onClose }) => {
                 {/* Close button */}
                 <button
                   onClick={onClose}
-                  className="w-full py-3 rounded-full bg-primary-200 text-white hover:bg-primary-100 transition-colors duration-200"
+                  className="button !w-full py-3 rounded-full bg-primary-200 text-white hover:bg-primary-100 transition-colors duration-200"
                 >
                   Close
                 </button>
