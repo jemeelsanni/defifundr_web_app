@@ -6,12 +6,12 @@ export const RoutePaths = {
 
   // ACCOUNT_CREATION: "/create-account",
   CREATE_ACCOUNT: "/auth/create-account",
-  CREATE_BUSINESS_DETAIL: "/auth/add-business-details",
+  CREATE_BUSINESS_DETAIL: "/auth/onboarding/add-business-details",
   SIGNIN: "/auth/signin",
   RESET_PASSWORD: "/auth/reset-password",
   FORGOT_PASSWORD: "/auth/forgot-password",
   RESET_OTP: "/auth/reset-otp",
   CREATE_PASSWORD: "/auth/create-password",
-  SELECT_ACCOUNT_TYPE: "/auth/select-account-type",
+  SELECT_ACCOUNT_TYPE: "/auth/onboarding/select-account-type",
   GUIDE: "/guide",
 };
