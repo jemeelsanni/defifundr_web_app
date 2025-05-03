@@ -115,7 +115,7 @@ const GlobalModal: React.FC = () => {
         <div className="flex items-center justify-center min-h-full p-4">
           <DialogPanel
             transition
-            className={`w-full ${getSizeClass()} flex-col flex rounded-xl ${getTypeClasses()} relative p-6 duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0 shadow-xl`}
+            className={`w-full ${getSizeClass()} flex-col flex rounded-xl ${getTypeClasses()} relative p-8 duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0 shadow-xl`}
           >
             <button onClick={handleClose} className="self-start">
               <svg

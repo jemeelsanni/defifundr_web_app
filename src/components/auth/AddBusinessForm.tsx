@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { ClipLoader } from "react-spinners";
+import WelcomeOnboardModal from "../modal/welcomeOnboardModal";
+import useModal from "../../hooks/useModal";
 
 export const AddBusinessForm = () => {
   const {
@@ -25,7 +27,7 @@ export const AddBusinessForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  const { showCustomModal } = useModal();
   //   placeHolder option for select
   const options = [
     "option 1",
@@ -44,7 +46,7 @@ export const AddBusinessForm = () => {
     setTimeout(() => {
       // Simply navigate to the next page
       navigate("#");
-
+      showCustomModal(<WelcomeOnboardModal />, "lg");
       // Reset loading state
       setLoading(false);
     }, 2000);
