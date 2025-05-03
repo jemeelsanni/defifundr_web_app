@@ -81,13 +81,13 @@ const GlobalModal: React.FC = () => {
     if (buttonType === "confirm") {
       switch (type) {
         case "success":
-          return `${baseClass} button--primary`;
+          return `${baseClass} py-3 rounded-full bg-primary-200 text-white hover:bg-primary-100 transition-colors duration-200`;
         case "warning":
           return `${baseClass} button--primary`;
         case "error":
           return `${baseClass} button--primary`;
         case "confirm":
-          return `${baseClass}button--primary`;
+          return `${baseClass} button--primary`;
         case "info":
         default:
           return `${baseClass} button--primary`;
