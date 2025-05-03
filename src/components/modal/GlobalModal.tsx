@@ -159,7 +159,7 @@ const GlobalModal: React.FC = () => {
             )}
 
             {/* Action buttons */}
-            <div className="flex justify-end mt-6 space-x-3">
+            <div className="flex justify-end mt-6 space-x-3 h-14">
               {/* {(type === "confirm" || cancelText) && (
                 <button
                   className={getButtonClass("cancel")}

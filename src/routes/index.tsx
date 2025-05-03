@@ -10,7 +10,7 @@ import CreateAccount from "../pages/auth/createAccount";
 import { ResetPassword } from "../pages/auth/ResetPassword";
 import { VerifyEmail } from "../pages/auth/verifyEmail";
 import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
-import { CreatePassword } from "../pages/auth/CreatePassword";
+import { CreatePassword } from "../pages/auth/createPassword";
 
 import { CreateBusinessDetail } from "../pages/auth/createBusinessDetails";
 
