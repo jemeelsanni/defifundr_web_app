@@ -1,17 +1,27 @@
-import { useState } from "react";
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
-import { EyeOff, EyeOn } from "../../assets/svg/svg";
+import {
+  NewPasswordFormSchemaType,
+  newPasswordSchema,
+} from "../../utils/schema";
+import { useZodForm } from "../../hooks/useZodForm";
+import FormPasswordInput from "../../components/form/FormPasswordInput";
 
 export const ResetPassword = () => {
-  const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
-    useState(false);
-  const toggleConfirmPasswordVisibility = () => {
-    setIsConfirmPasswordVisible((prev) => !prev);
+  const {
+    register,
+    formState: { errors, touchedFields, isValid },
+    handleSubmit,
+  } = useZodForm<NewPasswordFormSchemaType>(newPasswordSchema, {
+    defaultValues: {
+      confirmPassword: "",
+      newPassword: "",
+    },
+  });
+
+  const onSubmit = (data: NewPasswordFormSchemaType) => {
+    console.log("data", data);
   };
-  const toggleNewPasswordVisibility = () => {
-    setIsNewPasswordVisible((prev) => !prev);
-  };
+
   return (
     <div>
       <div className="space-y-12">
@@ -19,55 +29,31 @@ export const ResetPassword = () => {
           title="Reset password"
           description="Create a new secure password to access your DefiFundr account for subsequent login"
         />
-        <form className="space-y-12">
+        <form className="space-y-12" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-6">
-            <div className="form-control ">
-              <label htmlFor="newPassword">New password</label>
-              <div className="relative">
-                <input
-                  type={isNewPasswordVisible ? "text" : "password"}
-                  name="newPassword"
-                  id="newPassword"
-                  placeholder="New password"
-                />
-                <div>
-                  <button
-                    type="button"
-                    className="absolute transform -translate-y-1/2 right-4.5 top-1/2 focus:outline-none cursor-pointer"
-                    aria-label="Toggle password visibility"
-                    onClick={toggleNewPasswordVisibility}
-                  >
-                    {isNewPasswordVisible ? <EyeOn /> : <EyeOff />}
-                  </button>
-                </div>
-              </div>
-            </div>{" "}
-            <div className="form-control ">
-              <label htmlFor="confirmPassword">Confirm password</label>
-              <div className="relative">
-                <input
-                  type={isConfirmPasswordVisible ? "text" : "password"}
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  placeholder="Confirm password"
-                />
-                <div>
-                  <button
-                    type="button"
-                    className="absolute transform -translate-y-1/2 right-4.5 top-1/2 focus:outline-none cursor-pointer"
-                    aria-label="Toggle password visibility"
-                    onClick={toggleConfirmPasswordVisibility}
-                  >
-                    {isConfirmPasswordVisible ? <EyeOn /> : <EyeOff />}
-                  </button>
-                </div>
-              </div>
-            </div>
+            <FormPasswordInput
+              label="New password"
+              register={register}
+              error={errors.newPassword}
+              touched={touchedFields.newPassword}
+              id="newPassword"
+              placeholder="New password"
+            />
+
+            <FormPasswordInput
+              label="Confirm password"
+              register={register}
+              error={errors.confirmPassword}
+              touched={touchedFields.confirmPassword}
+              id="confirmPassword"
+              placeholder="Confirm password"
+            />
           </div>
           <div className="">
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
+              disabled={!isValid}
             >
               Continue
             </button>

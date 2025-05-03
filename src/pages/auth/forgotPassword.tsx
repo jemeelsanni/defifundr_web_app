@@ -1,27 +1,50 @@
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
+import FormInput from "../../components/form/FormInput";
+import { useZodForm } from "../../hooks/useZodForm";
+import {
+  ForgotPasswordSchemaType,
+  forgotPasswordSchema,
+} from "../../utils/schema";
 
 export const ForgotPassword = () => {
+  const {
+    register,
+    formState: { errors, touchedFields, isValid },
+    handleSubmit,
+  } = useZodForm<ForgotPasswordSchemaType>(forgotPasswordSchema, {
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  const onSubmit = (data: ForgotPasswordSchemaType) => {
+    console.log("data", data);
+  };
+
+  console.log(errors);
   return (
     <div className="flex flex-col gap-14">
       <AuthFormHeader
         title="Forgot your password?"
         description="Provide the email address linked to your DefiFundr account to reset your password and login"
       />
-      <form className="flex flex-col gap-14">
-        <div className="form-control ">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Provide email address"
-          />
-        </div>
+      <form className="flex flex-col gap-14" onSubmit={handleSubmit(onSubmit)}>
+        <FormInput
+          label="Email address"
+          register={register}
+          error={errors.email}
+          touched={touchedFields.email}
+          id="email"
+          placeholder="Provide email address"
+          type="email"
+          required
+        />
         <div className="space-y-8">
           <div className="">
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
+              disabled={!isValid}
             >
               {" "}
               Continue

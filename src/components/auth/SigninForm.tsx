@@ -1,48 +1,50 @@
-import { useState } from "react";
 import { ConnectWallet } from "./ConnectWallet";
 
-import { EyeOff, EyeOn } from "../../assets/svg/svg";
 import { RoutePaths } from "../../routes/routesPath";
 import { Link } from "react-router-dom";
+import { useZodForm } from "../../hooks/useZodForm";
+import { SignInSchemaType, signInSchema } from "../../utils/schema";
+import FormInput from "../form/FormInput";
+import FormPasswordInput from "../form/FormPasswordInput";
 
 export const SigninForm = () => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prev) => !prev);
+  const {
+    register,
+    formState: { errors, touchedFields, isValid },
+    handleSubmit,
+  } = useZodForm<SignInSchemaType>(signInSchema, {
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = (data: SignInSchemaType) => {
+    console.log("data", data);
   };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-6">
-        <div className="form-control ">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Provide email address"
-          />
-        </div>
-        <div className="form-control ">
-          <label htmlFor="password">Password</label>
-          <div className="relative">
-            <input
-              type={isPasswordVisible ? "text" : "password"}
-              name="password"
-              id="password"
-              placeholder="Enter password"
-            />
-            <div>
-              <button
-                type="button"
-                className="absolute transform -translate-y-1/2 right-4.5 top-1/2 focus:outline-none cursor-pointer"
-                aria-label="Toggle password visibility"
-                onClick={togglePasswordVisibility}
-              >
-                {isPasswordVisible ? <EyeOn /> : <EyeOff />}
-              </button>
-            </div>
-          </div>
-        </div>
+        <FormInput
+          id="email"
+          label="Email address"
+          register={register}
+          error={errors.email}
+          touched={touchedFields.email}
+          placeholder="Provide email address"
+          type="email"
+        />
+
+        <FormPasswordInput
+          label="Password"
+          register={register}
+          error={errors.password}
+          touched={touchedFields.password}
+          id="password"
+          placeholder="Enter password"
+        />
+
         <div className="flex items-end justify-end">
           {/* // TODO: change to use react router link */}
           <a
@@ -58,6 +60,7 @@ export const SigninForm = () => {
           <button
             type="submit"
             className="!w-full h-14 button button--secondary"
+            disabled={!isValid}
           >
             {" "}
             Continue
