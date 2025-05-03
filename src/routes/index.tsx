@@ -7,15 +7,14 @@ import GuestLayout from "../layout/guest";
 
 import { ForgotPassword } from "../pages/auth/forgotPassword";
 import CreateAccount from "../pages/auth/createAccount";
-import { ResetPassword } from "../pages/auth/resetPassword";
+import { ResetPassword } from "../pages/auth/ResetPassword";
 import { VerifyEmail } from "../pages/auth/verifyEmail";
-import { ResetPasswordOtp } from "../pages/auth/resetpasswordOtp";
+import { ResetPasswordOtp } from "../pages/auth/ResetpasswordOtp";
 import { CreatePassword } from "../pages/auth/CreatePassword";
 
 import { CreateBusinessDetail } from "../pages/auth/createBusinessDetails";
 
 import SelectAccountType from "../pages/auth/selectAccountType";
-
 
 export const router = createBrowserRouter([
   {
@@ -58,14 +57,11 @@ export const router = createBrowserRouter([
         element: <CreateAccount />,
       },
       {
-
         path: RoutePaths.CREATE_BUSINESS_DETAIL,
         element: <CreateBusinessDetail />,
-
-      
       },
       {
-         path: RoutePaths.SELECT_ACCOUNT_TYPE,
+        path: RoutePaths.SELECT_ACCOUNT_TYPE,
         element: <SelectAccountType />,
       },
     ],

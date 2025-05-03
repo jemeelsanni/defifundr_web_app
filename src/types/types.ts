@@ -1,4 +1,12 @@
 import { ReactNode } from "react";
+import {
+  FieldError,
+  FieldValues,
+  Path,
+  UseFormRegister,
+  Control,
+} from "react-hook-form";
+import { OtpSchemaType } from "../utils/schema";
 
 export interface IOnboardingLayout {
   children?: ReactNode;
@@ -17,4 +25,29 @@ export interface AuthFormHeaderProps {
   description: string;
 }
 
+export interface FormInputProps<T extends FieldValues> {
+  id: Path<T>;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  register: UseFormRegister<T>;
+  error?: FieldError;
+  required?: boolean;
+  className?: string;
+  touched?: boolean;
+}
+export interface FormSelectInputProps<T extends FieldValues> {
+  id: Path<T>;
+  label: string;
+  register: UseFormRegister<T>;
+  error?: FieldError;
+  className?: string;
+  options: string[];
+  touched?: boolean;
+  placeholder?: string;
+}
 
+export interface OtpInputProps {
+  control: Control<OtpSchemaType>;
+  error?: FieldError;
+}

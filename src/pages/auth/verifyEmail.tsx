@@ -1,8 +1,28 @@
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 import OtpInput from "../../components/auth/OtpInput";
+
+import { useZodForm } from "../../hooks/useZodForm";
+import { OtpSchemaType, otpSchema } from "../../utils/schema";
+
 import EmailVerification from "../../components/auth/EmailVerification";
 
+
 export const VerifyEmail = () => {
+  const {
+    control,
+    formState: { errors, isValid },
+
+    handleSubmit,
+  } = useZodForm<OtpSchemaType>(otpSchema, {
+    defaultValues: {
+      otp: "",
+    },
+  });
+
+  const onSubmit = (data: OtpSchemaType) => {
+    console.log("data", data);
+  };
+
   return (
     <div className="space-y-12">
       <AuthFormHeader
@@ -11,15 +31,16 @@ export const VerifyEmail = () => {
             your email account za**ab@gmail.com"
       />
       <div className="font-normal">
-        <OtpInput />
+        <OtpInput control={control} error={errors.otp} />
       </div>
       <div>
         <div className="">
           <button
             type="submit"
             className="!w-full h-14 button button--secondary"
+            disabled={!isValid}
+            onClick={handleSubmit(onSubmit)}
           >
-            {" "}
             Continue
           </button>
         </div>

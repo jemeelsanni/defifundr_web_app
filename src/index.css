@@ -195,9 +195,11 @@ body {
   }
 
   .form-control {
+    @apply relative;
+
     input,
     textarea {
-      @apply font-semibold text-[15px] xs:px-3.5 bg-gray-100  rounded-lg border border-primary-500 focus:border-primary-200 outline-0 focus:ring-0;
+      @apply font-semibold text-[15px] px-3.5 bg-gray-100  rounded-lg border border-primary-500 focus:border-primary-200 outline-0 focus:ring-0;
 
       /* Dark mode form input styles */
       .dark & {

@@ -1,13 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 import { PinIcon } from "../../assets/svg/svg";
+import { OtpInputProps } from "../../types/types";
+import { useController } from "react-hook-form";
+import { useFormError } from "../../hooks/useFormError";
+import ErrorMessage from "../form/ErrorMessage";
 
-function OtpInput() {
+function OtpInput({ control, error }: OtpInputProps) {
   const otpLength = 6;
   const [otp, setOtp] = useState(Array(otpLength).fill(""));
   const [mask, setMask] = useState(Array(otpLength).fill(false));
   const [countdown, setCountdown] = useState(300);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const [touched, setTouched] = useState(false);
+
+  const { message, hasError } = useFormError(error, touched);
+
+  const { field } = useController({
+    name: "otp",
+    control,
+    defaultValue: "",
+  });
 
   useEffect(() => {
     const resendTimer = setInterval(() => {
@@ -23,9 +37,19 @@ function OtpInput() {
     return () => clearInterval(resendTimer);
   }, []);
 
+  useEffect(() => {
+    const combinedOtp = otp.join("");
+    field.onChange(combinedOtp);
+  }, [otp, field]);
+
   const handleChange = (index: number, value: string) => {
     if (/^\d*$/.test(value)) {
       const newOtp = [...otp];
+      // Mark as touched on first input
+      if (!touched && newOtp.every((digit) => digit !== "")) {
+        setTouched(true);
+      }
+
       newOtp[index] = value;
       setOtp(newOtp);
       setTimeout(() => {
@@ -73,6 +97,7 @@ function OtpInput() {
 
   const handlePaste = (e: React.ClipboardEvent) => {
     e.preventDefault();
+
     const pastedData = e.clipboardData.getData("text").trim();
 
     // Check if pasted content matches the expected OTP format
@@ -81,6 +106,10 @@ function OtpInput() {
       const digits = pastedData.split("");
       setOtp(digits);
 
+      // Mark as touched on first input
+      if (!touched) {
+        setTouched(true);
+      }
       // Focus the last input after paste
       inputRefs.current[length - 1]?.focus();
 
@@ -111,9 +140,12 @@ function OtpInput() {
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
               onPaste={handlePaste}
-              className={`otp-input  peer !border-none dark:!bg-gray-500  ${
-                mask[index] == true ? "filled text-transparent  " : ""
-              } !placeholder:font-bold !placeholder:text-5xl`}
+              className={
+                `otp-input  peer dark:!bg-gray-500  ${
+                  mask[index] == true ? "filled text-transparent  " : ""
+                } !placeholder:font-bold !placeholder:text-5xl ` +
+                (hasError ? "!border-warning " : "!border-none ")
+              }
             />
             <div
               aria-hidden="true"
@@ -126,6 +158,8 @@ function OtpInput() {
           </div>
         ))}
       </div>
+
+      <ErrorMessage isVisible={hasError} errorMessage={message} />
 
       <div className="flex items-end justify-center pt-4">
         <button
