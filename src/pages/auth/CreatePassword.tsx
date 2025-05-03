@@ -5,10 +5,15 @@ import {
 } from "../../utils/schema";
 import { useZodForm } from "../../hooks/useZodForm";
 import FormPasswordInput from "../../components/form/FormPasswordInput";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { RoutePaths } from "../../routes/routesPath";
+import { ClipLoader } from "react-spinners";
 
 export const CreatePassword = () => {
   // const [newPassword, setNewPassword] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     watch,
@@ -21,8 +26,20 @@ export const CreatePassword = () => {
     },
   });
 
-  const onSubmit = (data: NewPasswordFormSchemaType) => {
-    console.log("data", data);
+  // const onSubmit = (data: NewPasswordFormSchemaType) => {
+  //   console.log("data", data);
+  // };
+  const onSubmit = () => {
+    setLoading(true);
+
+    // Mock API call with 2-second timeout
+    setTimeout(() => {
+      // Simply navigate to the next page
+      navigate(RoutePaths.SELECT_ACCOUNT_TYPE);
+
+      // Reset loading state
+      setLoading(false);
+    }, 2000);
   };
 
   const newPassword = watch("newPassword");
@@ -78,10 +95,14 @@ export const CreatePassword = () => {
               className="!w-full h-14 button button--secondary"
               disabled={!isValid}
             >
-              Create password
+              {loading ? (
+                <ClipLoader size={20} color="#ffffff" />
+              ) : (
+                "Create password"
+              )}
             </button>
           </div>
-          <ul className="space-y-3 mt-4">
+          <ul className="mt-4 space-y-3">
             {rules.map((rule, index) => (
               <li key={index} className="flex items-center gap-2 text-sm">
                 {rule.isValid ? (
@@ -89,9 +110,9 @@ export const CreatePassword = () => {
                     <span className="size-2 rounded-full bg-[#6C4EF2]"></span>
                   </span>
                 ) : (
-                  <span className="w-4 h-4 rounded-full border border-gray-300"></span>
+                  <span className="w-4 h-4 border border-gray-300 rounded-full"></span>
                 )}
-                <span className="text-gray-400 text-xs">{rule.label}</span>
+                <span className="text-xs text-gray-400">{rule.label}</span>
               </li>
             ))}
           </ul>

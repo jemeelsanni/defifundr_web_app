@@ -4,6 +4,10 @@ import { useZodForm } from "../../hooks/useZodForm";
 import FormSelectInput from "../form/FormSelectInput";
 import FormInput from "../form/FormInput";
 import { isValid } from "zod";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import { ClipLoader } from "react-spinners";
 
 export const AddBusinessForm = () => {
   const {
@@ -19,6 +23,8 @@ export const AddBusinessForm = () => {
       headquarterCountry: "",
     },
   });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   //   placeHolder option for select
   const options = [
@@ -31,8 +37,17 @@ export const AddBusinessForm = () => {
     "option 7",
   ];
 
-  const onSubmit = (data: BusinessSchemaType) => {
-    console.log("data", data);
+  const onSubmit = () => {
+    setLoading(true);
+
+    // Mock API call with 2-second timeout
+    setTimeout(() => {
+      // Simply navigate to the next page
+      navigate("#");
+
+      // Reset loading state
+      setLoading(false);
+    }, 2000);
   };
 
   const countriesData = Object.values(countries).map((country) => country.name);
@@ -49,7 +64,7 @@ export const AddBusinessForm = () => {
             placeholder="What’s the name of your company"
           />
 
-          <div className="grid  grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-4 w-full justify-between">
+          <div className="grid justify-between w-full grid-cols-1 gap-6 xl:grid-cols-2 xl:gap-4">
             <FormSelectInput
               id="companySize"
               label="Company size"
@@ -96,7 +111,7 @@ export const AddBusinessForm = () => {
             className="button button--secondary !w-full !h-full"
             disabled={!isValid}
           >
-            Continue
+            {loading ? <ClipLoader size={20} color="#ffffff" /> : "Continue"}
           </button>
         </div>
       </form>
