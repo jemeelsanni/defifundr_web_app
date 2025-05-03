@@ -1,14 +1,17 @@
 import { Check } from "lucide-react";
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../../components/form/FormInput";
 import { useZodForm } from "../../hooks/useZodForm";
 import {
   CreateAccountSchemaType,
   createAccountSchema,
 } from "../../utils/schema";
+import { ClipLoader } from "react-spinners";
 import { useFormError } from "../../hooks/useFormError";
 import ErrorMessage from "../../components/form/ErrorMessage";
+import { RoutePaths } from "../../routes/routesPath";
+import { useState } from "react";
 
 const CreateAccount = () => {
   const {
@@ -22,8 +25,20 @@ const CreateAccount = () => {
     touchedFields.agreeToTerms
   );
 
-  const onSubmit = (data: CreateAccountSchemaType) => {
-    console.log("data", data);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const onSubmit = () => {
+    setLoading(true);
+
+    // Mock API call with 2-second timeout
+    setTimeout(() => {
+      // Simply navigate to the next page
+      navigate(RoutePaths.CREATE_PASSWORD);
+
+      // Reset loading state
+      setLoading(false);
+    }, 2000);
   };
 
   return (
@@ -63,7 +78,7 @@ const CreateAccount = () => {
         />
       </div>
 
-      <div className="flex gap-2 relative">
+      <div className="relative flex gap-2">
         <div className="relative size-5">
           <input
             type="checkbox"
@@ -107,7 +122,7 @@ const CreateAccount = () => {
         className="!w-full h-14 button button--secondary !text-base dark:!bg-primary-200 dark:hover:!bg-primary-200/80"
         disabled={!isValid}
       >
-        Continue
+        {loading ? <ClipLoader size={20} color="#ffffff" /> : "Continue"}
       </button>
     </form>
   );

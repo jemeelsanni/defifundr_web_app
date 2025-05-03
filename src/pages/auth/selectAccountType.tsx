@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Business, Employee, FreeLancer } from "../../assets/svg/svg";
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
+import { useNavigate } from "react-router-dom";
+import { RoutePaths } from "../../routes/routesPath";
+import { ClipLoader } from "react-spinners";
 
 const accountTypes = [
   {
@@ -19,16 +22,29 @@ const accountTypes = [
 
 const SelectAccountType = () => {
   const [isSelected, setIsSelected] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSelected = (accountType: string) => setIsSelected(accountType);
+  const onSubmit = () => {
+    setLoading(true);
 
+    // Mock API call with 2-second timeout
+    setTimeout(() => {
+      // Simply navigate to the next page
+      navigate(RoutePaths.CREATE_BUSINESS_DETAIL);
+
+      // Reset loading state
+      setLoading(false);
+    }, 2000);
+  };
   return (
-    <div className="space-y-14 lg:space-y-16 overflow-hidden">
+    <div className="overflow-hidden space-y-14 lg:space-y-16">
       <AuthFormHeader
         title="Select account type"
         description="Choose an account type that best suits your usecase"
       />
-      <div className="flex gap-4 flex-col 2xs:flex-row">
+      <div className="flex flex-col gap-4 2xs:flex-row">
         {accountTypes.map((account) => {
           const isActive = isSelected === account.label;
           return (
@@ -64,10 +80,11 @@ const SelectAccountType = () => {
       </div>
 
       <button
+        onClick={onSubmit}
         className="button button--secondary h-14 !w-full disabled:opacity-40"
         disabled={isSelected === ""}
       >
-        Continue
+        {loading ? <ClipLoader size={20} color="#ffffff" /> : "Continue"}
       </button>
     </div>
   );
