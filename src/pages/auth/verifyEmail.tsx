@@ -1,7 +1,11 @@
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 import OtpInput from "../../components/auth/OtpInput";
+
 import { useZodForm } from "../../hooks/useZodForm";
 import { OtpSchemaType, otpSchema } from "../../utils/schema";
+
+import EmailVerification from "../../components/auth/EmailVerification";
+
 
 export const VerifyEmail = () => {
   const {
@@ -41,13 +45,8 @@ export const VerifyEmail = () => {
           </button>
         </div>
         <div className="flex items-center justify-center pt-8">
-          {/* // TODO: change to use react router link */}
-          <a
-            href=""
-            className="text-sm font-bold transition duration-300 ease-in-out text-primary-200 dark:text-primary-400 dark:hover:text-primary-400/70 hover:text-primary-200/70"
-          >
-            Didn’t get the code?
-          </a>
+          {/* EmailVerification component handles the modal */}
+          <EmailVerification />
         </div>
       </div>
     </div>
