@@ -6,11 +6,10 @@ import { OtpSchemaType, otpSchema } from "../../utils/schema";
 
 import EmailVerification from "../../components/auth/EmailVerification";
 
-
 export const VerifyEmail = () => {
   const {
     control,
-    formState: { errors, isValid },
+    formState: { errors },
 
     handleSubmit,
   } = useZodForm<OtpSchemaType>(otpSchema, {
@@ -38,7 +37,6 @@ export const VerifyEmail = () => {
           <button
             type="submit"
             className="!w-full h-14 button button--secondary"
-            disabled={!isValid}
             onClick={handleSubmit(onSubmit)}
           >
             Continue

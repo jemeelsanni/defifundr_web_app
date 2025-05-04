@@ -1,4 +1,4 @@
-import successEmoji from "../../assets/images/SuccessEmoji.png";
+import successEmoji from "../../assets/images/successEmoji.png";
 const WelcomeOnboardModal = () => {
   return (
     <div className="flex flex-col items-center p-4 space-y-6 text-center">

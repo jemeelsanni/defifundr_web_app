@@ -53,7 +53,6 @@ export const ResetPassword = () => {
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
-              disabled={!isValid}
             >
               Continue
             </button>

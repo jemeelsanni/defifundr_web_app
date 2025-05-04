@@ -3,7 +3,6 @@ import { BusinessSchemaType, businessSchema } from "../../utils/schema";
 import { useZodForm } from "../../hooks/useZodForm";
 import FormSelectInput from "../form/FormSelectInput";
 import FormInput from "../form/FormInput";
-import { isValid } from "zod";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -39,7 +38,9 @@ export const AddBusinessForm = () => {
     "option 7",
   ];
 
-  const onSubmit = () => {
+  const onSubmit = (data: BusinessSchemaType) => {
+    console.log("data", data);
+
     setLoading(true);
 
     // Mock API call with 2-second timeout
@@ -110,7 +111,6 @@ export const AddBusinessForm = () => {
           <button
             type="submit"
             className="button button--secondary !w-full !h-full"
-            disabled={!isValid}
           >
             {loading ? <ClipLoader size={20} color="#ffffff" /> : "Continue"}
           </button>

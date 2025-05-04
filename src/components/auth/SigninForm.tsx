@@ -10,7 +10,7 @@ import FormPasswordInput from "../form/FormPasswordInput";
 export const SigninForm = () => {
   const {
     register,
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields },
     handleSubmit,
   } = useZodForm<SignInSchemaType>(signInSchema, {
     defaultValues: {
@@ -60,7 +60,6 @@ export const SigninForm = () => {
           <button
             type="submit"
             className="!w-full h-14 button button--secondary"
-            disabled={!isValid}
           >
             {" "}
             Continue

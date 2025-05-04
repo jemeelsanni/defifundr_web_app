@@ -4,7 +4,13 @@ import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../routes/routesPath";
 import { ClipLoader } from "react-spinners";
+
+import { accountTypeSchema, AccountTypeSchemaType } from "../../utils/schema";
+import { useZodForm } from "../../hooks/useZodForm";
+import ErrorMessage from "../../components/form/ErrorMessage";
+
 import { AUTH_STEPS } from "../../utils/constant";
+
 
 const accountTypes = [
   {
@@ -22,13 +28,29 @@ const accountTypes = [
 ];
 
 const SelectAccountType = () => {
-  const [isSelected, setIsSelected] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSelected = (accountType: string) => setIsSelected(accountType);
-  const onSubmit = () => {
+  const {
+    setValue,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useZodForm<AccountTypeSchemaType>(accountTypeSchema, {
+    defaultValues: {
+      accountType: "",
+    },
+  });
+
+  const selectedAccountType = watch("accountType");
+
+  const handleSelected = (accountType: string) => {
+    setValue("accountType", accountType, { shouldValidate: true });
+  };
+
+  const onSubmit = (data: AccountTypeSchemaType) => {
     setLoading(true);
+    console.log(data);
 
     // Mock API call with 2-second timeout
     setTimeout(() => {
@@ -39,17 +61,22 @@ const SelectAccountType = () => {
       setLoading(false);
     }, 2000);
   };
+
   return (
-    <div className="overflow-hidden space-y-14 lg:space-y-16">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="overflow-hidden space-y-14 lg:space-y-16"
+    >
       <AuthFormHeader
         title="Select account type"
         currentStep={AUTH_STEPS.ACCOUNT_TYPE}
         totalSteps={4}
         description="Choose an account type that best suits your usecase"
       />
-      <div className="flex flex-col gap-4 2xs:flex-row">
+      <div className="flex flex-col gap-4 2xs:flex-row relative">
         {accountTypes.map((account) => {
-          const isActive = isSelected === account.label;
+          const isActive = selectedAccountType === account.label;
+
           return (
             <div
               key={account.label}
@@ -80,16 +107,17 @@ const SelectAccountType = () => {
             </div>
           );
         })}
+
+        <ErrorMessage
+          errorMessage={errors.accountType?.message}
+          isVisible={!selectedAccountType}
+        />
       </div>
 
-      <button
-        onClick={onSubmit}
-        className="button button--secondary h-14 !w-full disabled:opacity-40"
-        disabled={isSelected === ""}
-      >
+      <button className="button button--secondary h-14 !w-full disabled:opacity-40">
         {loading ? <ClipLoader size={20} color="#ffffff" /> : "Continue"}
       </button>
-    </div>
+    </form>
   );
 };
 

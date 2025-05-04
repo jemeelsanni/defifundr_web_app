@@ -6,7 +6,7 @@ import { OtpSchemaType, otpSchema } from "../../utils/schema";
 export const ResetPasswordOtp = () => {
   const {
     control,
-    formState: { errors, isValid },
+    formState: { errors },
 
     handleSubmit,
   } = useZodForm<OtpSchemaType>(otpSchema, {
@@ -36,7 +36,6 @@ export const ResetPasswordOtp = () => {
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
-              disabled={!isValid}
             >
               {" "}
               Continue

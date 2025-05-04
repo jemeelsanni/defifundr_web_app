@@ -30,7 +30,9 @@ export const CreatePassword = () => {
   // const onSubmit = (data: NewPasswordFormSchemaType) => {
   //   console.log("data", data);
   // };
-  const onSubmit = () => {
+  const onSubmit = (data: NewPasswordFormSchemaType) => {
+    console.log("data", data);
+
     setLoading(true);
 
     // Mock API call with 2-second timeout
@@ -96,7 +98,6 @@ export const CreatePassword = () => {
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
-              disabled={!isValid}
             >
               {loading ? (
                 <ClipLoader size={20} color="#ffffff" />

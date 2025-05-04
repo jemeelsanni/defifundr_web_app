@@ -9,7 +9,7 @@ import {
 export const ForgotPassword = () => {
   const {
     register,
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields },
     handleSubmit,
   } = useZodForm<ForgotPasswordSchemaType>(forgotPasswordSchema, {
     defaultValues: {
@@ -37,14 +37,12 @@ export const ForgotPassword = () => {
           id="email"
           placeholder="Provide email address"
           type="email"
-          required
         />
         <div className="space-y-8">
           <div className="">
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
-              disabled={!isValid}
             >
               {" "}
               Continue
