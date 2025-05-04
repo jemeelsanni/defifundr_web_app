@@ -1,6 +1,5 @@
-import { Check } from "lucide-react";
 import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FormInput from "../../components/form/FormInput";
 import { useZodForm } from "../../hooks/useZodForm";
 import {
@@ -8,28 +7,30 @@ import {
   createAccountSchema,
 } from "../../utils/schema";
 import { ClipLoader } from "react-spinners";
-import { useFormError } from "../../hooks/useFormError";
-import ErrorMessage from "../../components/form/ErrorMessage";
 import { RoutePaths } from "../../routes/routesPath";
 import { useState } from "react";
+import FormPrivacy from "../../components/form/FormPrivacy";
 
 const CreateAccount = () => {
   const {
     register,
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields },
     handleSubmit,
-  } = useZodForm<CreateAccountSchemaType>(createAccountSchema);
-
-  const agreeToTerms = useFormError(
-    errors.agreeToTerms,
-    touchedFields.agreeToTerms
-  );
+  } = useZodForm<CreateAccountSchemaType>(createAccountSchema, {
+    defaultValues: {
+      email: "",
+      firstName: "",
+      lastName: "",
+      agreeToTerms: false,
+    },
+  });
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const onSubmit = () => {
+  const onSubmit = (data: CreateAccountSchemaType) => {
     setLoading(true);
+    console.log(data);
 
     // Mock API call with 2-second timeout
     setTimeout(() => {
@@ -78,49 +79,16 @@ const CreateAccount = () => {
         />
       </div>
 
-      <div className="relative flex gap-2">
-        <div className="relative size-5">
-          <input
-            type="checkbox"
-            id="policy"
-            className={
-              "border-2 rounded appearance-none size-5 peer checked:border-0 checked:bg-primary-200 " +
-              (agreeToTerms.hasError ? "border-warning" : "border-gray-150")
-            }
-            {...register("agreeToTerms")}
-          />
-          <div className="absolute inset-0 items-center justify-center hidden pointer-events-none peer-checked:flex">
-            <Check className="text-white size-3 stroke-3 dark:text-gray-600" />
-          </div>
-        </div>
-        <label
-          htmlFor="policy"
-          className="text-xs font-medium text-gray-400 dark:text-gray-200"
-        >
-          By creating an account, I agree to our{" "}
-          <Link
-            to=""
-            className="font-bold text-primary-200 dark:text-primary-400 hover:underline"
-          >
-            Terms of Service
-          </Link>{" "}
-          and{" "}
-          <Link
-            to=""
-            className="font-bold text-primary-200 dark:text-primary-400 hover:underline "
-          >
-            Privacy Policy
-          </Link>{" "}
-          and confirm that I am 18 years and older.
-        </label>
-
-        <ErrorMessage errorMessage={agreeToTerms.message} />
-      </div>
+      <FormPrivacy
+        id="agreeToTerms"
+        register={register}
+        error={errors.agreeToTerms}
+        touched={touchedFields.agreeToTerms}
+      />
 
       <button
         type="submit"
         className="!w-full h-14 button button--secondary !text-base dark:!bg-primary-200 dark:hover:!bg-primary-200/80"
-        disabled={!isValid}
       >
         {loading ? <ClipLoader size={20} color="#ffffff" /> : "Continue"}
       </button>

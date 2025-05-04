@@ -51,3 +51,10 @@ export interface OtpInputProps {
   control: Control<OtpSchemaType>;
   error?: FieldError;
 }
+
+export interface FormPrivacyProps<T extends FieldValues> {
+  id: Path<T>;
+  register: UseFormRegister<T>;
+  error?: FieldError;
+  touched?: boolean;
+}

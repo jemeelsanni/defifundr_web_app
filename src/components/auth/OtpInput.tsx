@@ -123,7 +123,7 @@ function OtpInput({ control, error }: OtpInputProps) {
         OTP Verification
       </label>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between relative">
         {otp.map((digit, index) => (
           <div key={index} className="relative">
             <input
@@ -157,9 +157,8 @@ function OtpInput({ control, error }: OtpInputProps) {
             </div>
           </div>
         ))}
+        <ErrorMessage isVisible={hasError} errorMessage={message} />
       </div>
-
-      <ErrorMessage isVisible={hasError} errorMessage={message} />
 
       <div className="flex items-end justify-center pt-4">
         <button

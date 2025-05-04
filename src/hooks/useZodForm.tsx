@@ -8,7 +8,7 @@ export function useZodForm<T extends FieldValues>(
 ) {
   const form = useForm<T>({
     resolver: zodResolver(schema),
-    mode: "onChange",
+    mode: "all",
     ...options,
   });
 

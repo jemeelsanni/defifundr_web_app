@@ -22,10 +22,14 @@ export const validationSchemas = {
   otp: z.string().regex(/^\d{6}$/, "Please enter a valid 6-digit code"),
 
   // Terms and conditions agreement validation
-  agreeToTerms: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to the terms and conditions" }),
+  agreeToTerms: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the terms and conditions",
   }),
 };
+
+export const accountTypeSchema = z.object({
+  accountType: validationSchemas.name("Please select an account type"),
+});
 
 export const createAccountSchema = z.object({
   firstName: validationSchemas.name("First name field cannot be empty"),
@@ -73,3 +77,4 @@ export type SignInSchemaType = z.infer<typeof signInSchema>;
 export type ForgotPasswordSchemaType = z.infer<typeof forgotPasswordSchema>;
 export type OtpSchemaType = z.infer<typeof otpSchema>;
 export type BusinessSchemaType = z.infer<typeof businessSchema>;
+export type AccountTypeSchemaType = z.infer<typeof accountTypeSchema>;
