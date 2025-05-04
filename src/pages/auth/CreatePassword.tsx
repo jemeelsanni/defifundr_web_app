@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { RoutePaths } from "../../routes/routesPath";
 import { ClipLoader } from "react-spinners";
+import { AUTH_STEPS } from "../../utils/constant";
 
 export const CreatePassword = () => {
   // const [newPassword, setNewPassword] = useState("");
@@ -68,6 +69,8 @@ export const CreatePassword = () => {
       <div className="space-y-12">
         <AuthFormHeader
           title="Add a password"
+          currentStep={AUTH_STEPS.CREATE_PASSWORD}
+          totalSteps={4}
           description="Create a secure password to access your DefiFundr account for subsequent login"
         />
         <form className="space-y-12" onSubmit={handleSubmit(onSubmit)}>

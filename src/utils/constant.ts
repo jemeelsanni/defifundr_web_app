@@ -20,3 +20,10 @@ export const accountTypeOptions: AccountOption[] = [
     // icon: employeeIcon,
   },
 ];
+
+export const AUTH_STEPS = {
+  CREATE_ACCOUNT: 1,
+  CREATE_PASSWORD: 2,
+  ACCOUNT_TYPE: 3,
+  BUSINESS_INFO: 4,
+} as const;

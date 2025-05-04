@@ -4,6 +4,7 @@ import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../routes/routesPath";
 import { ClipLoader } from "react-spinners";
+import { AUTH_STEPS } from "../../utils/constant";
 
 const accountTypes = [
   {
@@ -42,6 +43,8 @@ const SelectAccountType = () => {
     <div className="overflow-hidden space-y-14 lg:space-y-16">
       <AuthFormHeader
         title="Select account type"
+        currentStep={AUTH_STEPS.ACCOUNT_TYPE}
+        totalSteps={4}
         description="Choose an account type that best suits your usecase"
       />
       <div className="flex flex-col gap-4 2xs:flex-row">
