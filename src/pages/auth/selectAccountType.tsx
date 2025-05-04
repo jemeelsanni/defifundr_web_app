@@ -4,9 +4,13 @@ import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../routes/routesPath";
 import { ClipLoader } from "react-spinners";
+
 import { accountTypeSchema, AccountTypeSchemaType } from "../../utils/schema";
 import { useZodForm } from "../../hooks/useZodForm";
 import ErrorMessage from "../../components/form/ErrorMessage";
+
+import { AUTH_STEPS } from "../../utils/constant";
+
 
 const accountTypes = [
   {
@@ -65,6 +69,8 @@ const SelectAccountType = () => {
     >
       <AuthFormHeader
         title="Select account type"
+        currentStep={AUTH_STEPS.ACCOUNT_TYPE}
+        totalSteps={4}
         description="Choose an account type that best suits your usecase"
       />
       <div className="flex flex-col gap-4 2xs:flex-row relative">
