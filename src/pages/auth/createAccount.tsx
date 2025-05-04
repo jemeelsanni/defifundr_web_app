@@ -46,6 +46,8 @@ const CreateAccount = () => {
       <AuthFormHeader
         title="Welcome to DefiFundr!"
         description="Let’s get to know you! Provide the details below to continue"
+        currentStep={1}
+        totalSteps={4}
       />
 
       <div className="space-y-6">

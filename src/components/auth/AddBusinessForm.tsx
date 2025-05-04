@@ -44,10 +44,9 @@ export const AddBusinessForm = () => {
 
     // Mock API call with 2-second timeout
     setTimeout(() => {
-      // Simply navigate to the next page
       navigate("#");
       showCustomModal(<WelcomeOnboardModal />, "lg");
-      // Reset loading state
+
       setLoading(false);
     }, 2000);
   };
