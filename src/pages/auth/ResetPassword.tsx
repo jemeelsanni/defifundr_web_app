@@ -5,6 +5,11 @@ import {
 } from "../../utils/schema";
 import { useZodForm } from "../../hooks/useZodForm";
 import FormPasswordInput from "../../components/form/FormPasswordInput";
+import { useState } from "react";
+import { RoutePaths } from "../../routes/routesPath";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+
 
 export const ResetPassword = () => {
   const {
@@ -18,8 +23,21 @@ export const ResetPassword = () => {
     },
   });
 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const onSubmit = (data: NewPasswordFormSchemaType) => {
-    console.log("data", data);
+    setLoading(true);
+
+    // Mock API call with 2-second timeout
+    setTimeout(() => {
+      // Simply navigate to the next page
+      navigate(RoutePaths.SIGNIN);
+
+      // Reset loading state
+      setLoading(false);
+      console.log("data", data);
+    }, 2000);
   };
 
   return (
@@ -53,8 +71,13 @@ export const ResetPassword = () => {
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
+              disabled={!isValid}
             >
-              Continue
+              {loading ? (
+                <ClipLoader size={20} color="#ffffff" />
+              ) : (
+                'Continue'
+              )}
             </button>
           </div>
         </form>

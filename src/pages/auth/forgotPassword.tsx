@@ -5,11 +5,16 @@ import {
   ForgotPasswordSchemaType,
   forgotPasswordSchema,
 } from "../../utils/schema";
+import { useState } from "react";
+import { RoutePaths } from "../../routes/routesPath";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+
 
 export const ForgotPassword = () => {
   const {
     register,
-    formState: { errors, touchedFields },
+    formState: { errors, touchedFields, isValid },
     handleSubmit,
   } = useZodForm<ForgotPasswordSchemaType>(forgotPasswordSchema, {
     defaultValues: {
@@ -17,9 +22,23 @@ export const ForgotPassword = () => {
     },
   });
 
-  const onSubmit = (data: ForgotPasswordSchemaType) => {
-    console.log("data", data);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const onSubmit = () => {
+    setLoading(true);
+
+    // Mock API call with 2-second timeout
+    setTimeout(() => {
+      // Simply navigate to the next page
+      navigate(RoutePaths.RESET_OTP);
+
+      // Reset loading state
+      setLoading(false);
+    }, 2000);
   };
+
+
 
   console.log(errors);
   return (
@@ -37,15 +56,21 @@ export const ForgotPassword = () => {
           id="email"
           placeholder="Provide email address"
           type="email"
+          required
         />
         <div className="space-y-8">
           <div className="">
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
+              disabled={!isValid}
             >
               {" "}
-              Continue
+              {loading ? (
+                <ClipLoader size={20} color="#ffffff" />
+              ) : (
+                'Continue'
+              )}
             </button>
           </div>
           <div className="flex items-center justify-center">

@@ -47,12 +47,14 @@ export const SigninForm = () => {
 
         <div className="flex items-end justify-end">
           {/* // TODO: change to use react router link */}
-          <a
-            href=""
-            className="text-sm font-bold transition duration-300 ease-in-out text-primary-200 dark:text-primary-400 dark:hover:text-primary-400/70 hover:text-primary-200/70"
+          <Link
+            to={RoutePaths.FORGOT_PASSWORD}
+            type="button"
+            className="text-sm font-medium text-gray-400 dark:text-gray-200 cursor-pointer"
+
           >
             Forgot password?
-          </a>
+          </Link>
         </div>
       </div>
       <div className="pt-12 space-y-6">

@@ -2,11 +2,16 @@ import { AuthFormHeader } from "../../common/auth/AuthFormHeader";
 import OtpInput from "../../components/auth/OtpInput";
 import { useZodForm } from "../../hooks/useZodForm";
 import { OtpSchemaType, otpSchema } from "../../utils/schema";
+import { useState } from "react";
+import { RoutePaths } from "../../routes/routesPath";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+
 
 export const ResetPasswordOtp = () => {
   const {
     control,
-    formState: { errors },
+    formState: { errors, isValid },
 
     handleSubmit,
   } = useZodForm<OtpSchemaType>(otpSchema, {
@@ -15,8 +20,22 @@ export const ResetPasswordOtp = () => {
     },
   });
 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+
   const onSubmit = (data: OtpSchemaType) => {
-    console.log("data", data);
+    setLoading(true);
+
+    // Mock API call with 2-second timeout
+    setTimeout(() => {
+      // Simply navigate to the next page
+      navigate(RoutePaths.RESET_PASSWORD);
+
+      // Reset loading state
+      setLoading(false);
+      console.log("data", data);
+    }, 2000);
   };
 
   return (
@@ -36,9 +55,14 @@ export const ResetPasswordOtp = () => {
             <button
               type="submit"
               className="!w-full h-14 button button--secondary"
+              disabled={!isValid}
             >
               {" "}
-              Continue
+              {loading ? (
+                <ClipLoader size={20} color="#ffffff" />
+              ) : (
+                'Continue'
+              )}
             </button>
           </div>
         </form>
