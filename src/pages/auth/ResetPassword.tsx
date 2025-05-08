@@ -9,7 +9,7 @@ import FormPasswordInput from "../../components/form/FormPasswordInput";
 export const ResetPassword = () => {
   const {
     register,
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields },
     handleSubmit,
   } = useZodForm<NewPasswordFormSchemaType>(newPasswordSchema, {
     defaultValues: {

@@ -12,7 +12,7 @@ const Stepper = ({ currentStep, totalSteps = 4 }: StepperProps) => {
             className={`h-full rounded-lg transition-colors duration-300 ${
               index + 1 <= currentStep
                 ? "bg-primary-200"
-                : "bg-gray-200 dark:bg-gray-600"
+                : "bg-gray-200 dark:bg-gray-300"
             }`}
           />
         </div>

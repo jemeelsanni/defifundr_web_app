@@ -18,7 +18,7 @@ export const CreatePassword = () => {
   const {
     register,
     watch,
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields },
     handleSubmit,
   } = useZodForm<NewPasswordFormSchemaType>(newPasswordSchema, {
     defaultValues: {
